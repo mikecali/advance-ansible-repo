@@ -1,2 +1,16 @@
 ---
 # tasks file for haproxy-install
+  - name: http
+    package:
+      name: httpd
+      state: latest
+
+  - name: install HAProxy
+    yum:
+      name=haproxy state=latest
+
+  - name: enable HAProxy
+    service:
+      name: haproxy
+      state: started
+

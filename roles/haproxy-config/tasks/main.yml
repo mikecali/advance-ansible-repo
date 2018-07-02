@@ -1,2 +1,18 @@
 ---
 # tasks file for haproxy-config
+
+  - name: update bashrc
+    lineinfile: 
+      path: ~/.bashrc
+      regexp: '^GUID='
+      line: GUID={{ GUID }}
+
+  - name: configure haproxy
+    template:
+      src: ./haproxy.cfg.j2
+      dest: /etc/haproxy/haproxy.cfg
+
+  - name: restart HAproxy
+    service:
+      name: haproxy
+      state: restarted
