@@ -1,0 +1,38 @@
+---
+# The main playbook that will call the roles to deploy 3 tier apps
+
+- name: Deploy and Configure
+  hosts: all
+  gather_facts: true # remove later! speeds up testing
+  become: true
+
+  roles:
+    - { role: enable-repo }
+
+- name: deploy haproxy
+  hosts: frontends
+  gather_facts: false 
+  become: true
+
+  roles:
+    - { role: haproxy-install }
+    - { role: haproxy-config }
+
+- name: deploy tomcat
+  hosts: apps
+  gather_facts: false
+  become: true
+
+  roles:
+    - { role: tomcat-install }
+    - { role: tomcat-config }
+
+- name: deploy postgres
+  hosts: apps
+  gather_facts: false
+  become: true
+  hosts: appdbs
+
+  roles:
+    - { role: postgresql-install }
+    - { role: postgresql-config }
