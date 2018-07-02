@@ -1,2 +1,5 @@
 ---
 # vars file for postgresql-config
+db_user: postgres
+db_name: postgres
+db_password: postgres

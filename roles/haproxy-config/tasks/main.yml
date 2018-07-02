@@ -5,7 +5,7 @@
     lineinfile: 
       path: ~/.bashrc
       regexp: '^GUID='
-      line: GUID=6335
+      line: GUID={{ GUID }}
 
   - name: configure haproxy
     template:
