@@ -24,6 +24,7 @@
   become: true
 
   roles:
+#    - { role: deploy-apache }
     - { role: tomcat-install }
     - { role: tomcat-config }
 
